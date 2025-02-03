@@ -17,7 +17,7 @@
   },
   "pnpm": {
     "executionEnv": {
-      "nodeVersion": "22.12.0"
+      "nodeVersion": "22.13.1"
     }
   },
   "packageManager": "pnpm@10.2.0"
