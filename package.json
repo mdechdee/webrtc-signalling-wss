@@ -1,0 +1,23 @@
+{
+  "name": "wss",
+  "version": "1.0.0",
+  "description": "websocket signalling server for webrtc godot game",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^22.13.0",
+    "nodemon": "^3.1.9",
+    "uuid": "^11.0.5",
+    "ws": "^8.18.0"
+  },
+  "pnpm": {
+    "executionEnv": {
+      "nodeVersion": "22.12.0"
+    }
+  }
+}
