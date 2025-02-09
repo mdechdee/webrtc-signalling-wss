@@ -74,6 +74,9 @@ wss.on("connection", (ws) => {
           peerId: peerId,
         })
       );
+      for (const [_, peer] of rooms[data.roomId].peers) {
+        peer.send(JSON.stringify({ type: "peer-added", peerId: peerId }));
+      }
     } else if (
       data.type === "offer" ||
       data.type === "answer" ||
@@ -106,7 +109,8 @@ wss.on("connection", (ws) => {
 });
 
 const generateUniquePeerId = (room: Room): number => {
-  const peerId = Math.floor(Math.random() * Number.MAX_SAFE_INTEGER);
+  // max peer id is 2147483647
+  const peerId = Math.floor(Math.random() * 2147483647);
   return room.peers.has(peerId) ? generateUniquePeerId(room) : peerId;
 };
 
