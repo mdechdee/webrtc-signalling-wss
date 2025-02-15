@@ -61,7 +61,7 @@ wss.on("connection", (ws) => {
       rooms[roomId] = {
         peers: new Map(),
       };
-      rooms[roomId].peers.set(0, ws);
+      rooms[roomId].peers.set(1, ws);
       ws.send(JSON.stringify({ type: "room-created", roomId }));
     } else if (data.type === "join-room") {
       if (!rooms[data.roomId]) return;
