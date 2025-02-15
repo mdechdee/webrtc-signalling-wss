@@ -66,7 +66,6 @@ wss.on("connection", (ws) => {
     } else if (data.type === "join-room") {
       if (!rooms[data.roomId]) return;
       const newPeerId = generateUniquePeerId(rooms[data.roomId]);
-      rooms[data.roomId].peers.set(newPeerId, ws);
       ws.send(
         JSON.stringify({
           type: "room-joined",
@@ -76,8 +75,9 @@ wss.on("connection", (ws) => {
       );
       for (const [peerId, peerWs] of rooms[data.roomId].peers) {
         peerWs.send(JSON.stringify({ type: "peer-added", peerId: newPeerId }));
-        ws.send(JSON.stringify({ type: "peer-added", peerId: peerId }));
+        ws.send(JSON.stringify({ type: "peer-added", peerId: peerId }));        
       }
+      rooms[data.roomId].peers.set(newPeerId, ws);
     } else if (
       data.type === "offer" ||
       data.type === "answer" ||
